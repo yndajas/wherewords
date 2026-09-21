@@ -1,0 +1,9 @@
+p.search {
+  cursor: crosshair;
+}
+
+a {
+  color: unset;
+  cursor: unset;
+  text-decoration: unset;
+}
