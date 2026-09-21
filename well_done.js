@@ -52,7 +52,12 @@ function textParagraph(phrase, length) {
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const phrase = document.querySelector("input[name='phrase']").value;
+  const phrase = document.querySelector("input[name='phrase']").value.trim();
+  if (phrase.length === 0) {
+    alert("Say something!");
+    return;
+  }
+
   const length = Math.max(
     Number.parseInt(document.querySelector("input[name='length']").value),
     phrase.split(" ").length,
