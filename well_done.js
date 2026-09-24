@@ -11,8 +11,6 @@ function link(phrase) {
 
 function textParagraph(phrase, length) {
   const words = splitWords(phrase);
-  if (!hasUniqueWords(words)) return false;
-
   const textArray = noiseWords(words, length);
 
   textArray.splice(randomIndex(textArray), 0, link(phrase));
@@ -33,15 +31,16 @@ document.querySelector("form").addEventListener("submit", (event) => {
     return;
   }
 
+  const words = splitWords(phrase);
+  if (!hasUniqueWords(words)) {
+    alert("No repeated words!");
+    return;
+  }
+
   const length = Math.max(
     Number.parseInt(document.querySelector("input[name='length']").value),
-    phrase.split(" ").length,
+    words.length,
   );
-  const paragraph = textParagraph(phrase, length);
 
-  if (paragraph) {
-    event.target.replaceWith(paragraph);
-  } else {
-    alert("No repeated words!");
-  }
+  event.target.replaceWith(textParagraph(phrase, length));
 });
