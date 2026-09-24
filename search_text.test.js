@@ -5,6 +5,7 @@ import {
   candidateWords,
   hasUniqueWords,
   noiseWords,
+  searchLength,
   splitWords,
 } from "./search_text.js";
 
@@ -40,6 +41,24 @@ describe("hasUniqueWords", () => {
 
   it("is false when a word repeats", () => {
     assert.equal(hasUniqueWords(["interact", "with", "interact"]), false);
+  });
+});
+
+describe("searchLength", () => {
+  it("uses the requested length", () => {
+    assert.equal(searchLength("10", 3), 10);
+  });
+
+  it("falls back to the minimum when the length is blank", () => {
+    assert.equal(searchLength("", 3), 3);
+  });
+
+  it("falls back to the minimum when the length is not a number", () => {
+    assert.equal(searchLength("lots", 3), 3);
+  });
+
+  it("raises a length below the minimum", () => {
+    assert.equal(searchLength("2", 3), 3);
   });
 });
 

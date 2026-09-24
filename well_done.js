@@ -2,6 +2,7 @@ import {
   hasUniqueWords,
   noiseWords,
   randomIndex,
+  searchLength,
   splitWords,
 } from "./search_text.js";
 
@@ -38,8 +39,8 @@ document.querySelector("form").addEventListener("submit", (event) => {
     return;
   }
 
-  const length = Math.max(
-    Number.parseInt(document.querySelector("input[name='length']").value),
+  const length = searchLength(
+    document.querySelector("input[name='length']").value,
     words.length,
   );
 

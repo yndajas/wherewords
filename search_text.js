@@ -6,6 +6,13 @@ export function hasUniqueWords(words) {
   return words.length === new Set(words).size;
 }
 
+export function searchLength(value, minimum) {
+  const requested = Number.parseInt(value, 10);
+  if (Number.isNaN(requested)) return minimum;
+
+  return Math.max(requested, minimum);
+}
+
 function endsWith(array, sequence) {
   if (sequence.length > array.length) return false;
 
