@@ -25,6 +25,10 @@ function randomIndex(array, random = Math.random) {
   return Math.floor(random() * array.length);
 }
 
+function randomPosition(array, random) {
+  return Math.floor(random() * (array.length + 1));
+}
+
 export function candidateWords(words, noise) {
   const nonFinalWords = words.slice(0, -1);
 
@@ -41,7 +45,7 @@ export function noiseWords(words, length, random = Math.random) {
     noise.push(candidates[randomIndex(candidates, random)]);
   }
 
-  const splitAt = randomIndex(noise, random);
+  const splitAt = randomPosition(noise, random);
 
   return { before: noise.slice(0, splitAt), after: noise.slice(splitAt) };
 }

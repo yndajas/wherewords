@@ -20,6 +20,11 @@ function walkThroughPhrase() {
   return () => fractions[index++ % fractions.length];
 }
 
+// Always picks the last of whatever it is offered.
+function alwaysLast() {
+  return () => 0.999999;
+}
+
 describe("splitWords", () => {
   it("splits the phrase on spaces", () => {
     assert.deepEqual(splitWords("interact with me"), words);
@@ -92,6 +97,13 @@ describe("noiseWords", () => {
     assert.deepEqual(noise, {
       before: [],
       after: ["interact", "with", "with"],
+    });
+  });
+
+  it("can leave the phrase at the very end of the text", () => {
+    assert.deepEqual(noiseWords(words, 5, alwaysLast()), {
+      before: ["me", "me"],
+      after: [],
     });
   });
 
