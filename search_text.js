@@ -1,5 +1,5 @@
 export function splitWords(phrase) {
-  return phrase.split(" ");
+  return phrase.split(/\s+/).filter((word) => word.length > 0);
 }
 
 export function hasUniqueWords(words) {

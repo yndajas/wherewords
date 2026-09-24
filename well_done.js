@@ -24,13 +24,15 @@ function textParagraph(words, length) {
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const phrase = document.querySelector("input[name='phrase']").value.trim();
-  if (phrase.length === 0) {
+  const words = splitWords(
+    document.querySelector("input[name='phrase']").value,
+  );
+
+  if (words.length === 0) {
     alert("Say something!");
     return;
   }
 
-  const words = splitWords(phrase);
   if (!hasUniqueWords(words)) {
     alert("No repeated words!");
     return;

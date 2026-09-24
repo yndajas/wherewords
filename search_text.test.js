@@ -23,6 +23,14 @@ describe("splitWords", () => {
   it("splits the phrase on spaces", () => {
     assert.deepEqual(splitWords("interact with me"), words);
   });
+
+  it("ignores repeated and surrounding whitespace", () => {
+    assert.deepEqual(splitWords("  interact   with\tme \n"), words);
+  });
+
+  it("returns no words for a blank phrase", () => {
+    assert.deepEqual(splitWords("   "), []);
+  });
 });
 
 describe("hasUniqueWords", () => {
