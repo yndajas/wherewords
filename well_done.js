@@ -21,10 +21,7 @@ function link(phrase) {
   return `<a href="./well_doner">${phrase}</a>`;
 }
 
-function textParagraph(phrase, length) {
-  const words = uniqueWords(phrase);
-  if (!words) return false;
-
+function noiseWords(words, length) {
   const non_final_words = words.slice(0, -1);
   const textArray = [];
 
@@ -39,6 +36,15 @@ function textParagraph(phrase, length) {
 
     textArray.push(candidates[randomIndex(candidates)]);
   }
+
+  return textArray;
+}
+
+function textParagraph(phrase, length) {
+  const words = uniqueWords(phrase);
+  if (!words) return false;
+
+  const textArray = noiseWords(words, length);
 
   textArray.splice(randomIndex(textArray), 0, link(phrase));
   const innerHtml = textArray.join(" ");
