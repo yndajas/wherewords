@@ -17,9 +17,9 @@ export function randomIndex(array, random = Math.random) {
 }
 
 export function candidateWords(words, noise) {
-  const non_final_words = words.slice(0, -1);
+  const nonFinalWords = words.slice(0, -1);
 
-  return endsWith(noise, non_final_words) ? non_final_words : words;
+  return endsWith(noise, nonFinalWords) ? nonFinalWords : words;
 }
 
 export function noiseWords(words, length, random = Math.random) {
