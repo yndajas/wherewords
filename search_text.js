@@ -7,7 +7,9 @@ export function hasUniqueWords(words) {
 }
 
 function endsWith(array, sequence) {
-  const end = array.slice(-sequence.length);
+  if (sequence.length > array.length) return false;
+
+  const end = array.slice(array.length - sequence.length);
 
   return sequence.every((word, index) => word === end[index]);
 }
