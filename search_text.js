@@ -13,11 +13,11 @@ function matchEnd(lookFor, lookIn) {
   );
 }
 
-export function randomIndex(array) {
-  return Math.floor(Math.random() * array.length);
+export function randomIndex(array, random = Math.random) {
+  return Math.floor(random() * array.length);
 }
 
-export function noiseWords(words, length) {
+export function noiseWords(words, length, random = Math.random) {
   const non_final_words = words.slice(0, -1);
   const textArray = [];
 
@@ -30,7 +30,7 @@ export function noiseWords(words, length) {
       candidates = words;
     }
 
-    textArray.push(candidates[randomIndex(candidates)]);
+    textArray.push(candidates[randomIndex(candidates, random)]);
   }
 
   return textArray;
