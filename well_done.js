@@ -6,16 +6,21 @@ import {
 } from "./search_text.js";
 
 function link(phrase) {
-  return `<a href="./well_doner">${phrase}</a>`;
+  const anchor = document.createElement("a");
+  anchor.href = "./well_doner";
+  anchor.textContent = phrase;
+
+  return anchor;
 }
 
 function textParagraph(words, length) {
   const { before, after } = noiseWords(words, length);
-  const textArray = [...before, link(words.join(" ")), ...after];
-  const innerHtml = textArray.join(" ");
   const paragraph = document.createElement("p");
   paragraph.classList.add("search");
-  paragraph.innerHTML = innerHtml;
+
+  if (before.length > 0) paragraph.append(`${before.join(" ")} `);
+  paragraph.append(link(words.join(" ")));
+  if (after.length > 0) paragraph.append(` ${after.join(" ")}`);
 
   return paragraph;
 }
