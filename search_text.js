@@ -6,12 +6,10 @@ export function hasUniqueWords(words) {
   return words.length === new Set(words).size;
 }
 
-function matchEnd(lookFor, lookIn) {
-  const lookInEnd = lookIn.slice(-lookFor.length);
+function endsWith(array, sequence) {
+  const end = array.slice(-sequence.length);
 
-  return lookFor.every(
-    (lookForWord, lookForIndex) => lookForWord == lookInEnd[lookForIndex],
-  );
+  return sequence.every((word, index) => word == end[index]);
 }
 
 export function randomIndex(array, random = Math.random) {
@@ -21,7 +19,7 @@ export function randomIndex(array, random = Math.random) {
 export function candidateWords(words, noise) {
   const non_final_words = words.slice(0, -1);
 
-  return matchEnd(non_final_words, noise) ? non_final_words : words;
+  return endsWith(noise, non_final_words) ? non_final_words : words;
 }
 
 export function noiseWords(words, length, random = Math.random) {
