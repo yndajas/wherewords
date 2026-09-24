@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { candidateWords, noiseWords, uniqueWords } from "./search_text.js";
+import {
+  candidateWords,
+  hasUniqueWords,
+  noiseWords,
+  splitWords,
+} from "./search_text.js";
 
 const words = ["interact", "with", "me"];
 
@@ -14,13 +19,19 @@ function walkThroughPhrase() {
   return () => fractions[index++ % fractions.length];
 }
 
-describe("uniqueWords", () => {
-  it("returns the words when every word differs", () => {
-    assert.deepEqual(uniqueWords("interact with me"), words);
+describe("splitWords", () => {
+  it("splits the phrase on spaces", () => {
+    assert.deepEqual(splitWords("interact with me"), words);
+  });
+});
+
+describe("hasUniqueWords", () => {
+  it("is true when every word differs", () => {
+    assert.equal(hasUniqueWords(words), true);
   });
 
-  it("returns false when a word repeats", () => {
-    assert.equal(uniqueWords("interact with interact"), false);
+  it("is false when a word repeats", () => {
+    assert.equal(hasUniqueWords(["interact", "with", "interact"]), false);
   });
 });
 

@@ -1,8 +1,9 @@
-export function uniqueWords(phrase) {
-  const words = phrase.split(" ");
-  if (words.length !== new Set(words).size) return false;
+export function splitWords(phrase) {
+  return phrase.split(" ");
+}
 
-  return words;
+export function hasUniqueWords(words) {
+  return words.length === new Set(words).size;
 }
 
 function matchEnd(lookFor, lookIn) {

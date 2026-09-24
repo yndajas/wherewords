@@ -1,12 +1,17 @@
-import { noiseWords, randomIndex, uniqueWords } from "./search_text.js";
+import {
+  hasUniqueWords,
+  noiseWords,
+  randomIndex,
+  splitWords,
+} from "./search_text.js";
 
 function link(phrase) {
   return `<a href="./well_doner">${phrase}</a>`;
 }
 
 function textParagraph(phrase, length) {
-  const words = uniqueWords(phrase);
-  if (!words) return false;
+  const words = splitWords(phrase);
+  if (!hasUniqueWords(words)) return false;
 
   const textArray = noiseWords(words, length);
 
