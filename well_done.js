@@ -1,7 +1,6 @@
 import {
   hasUniqueWords,
   noiseWords,
-  randomIndex,
   searchLength,
   splitWords,
 } from "./search_text.js";
@@ -11,9 +10,8 @@ function link(phrase) {
 }
 
 function textParagraph(words, length) {
-  const textArray = noiseWords(words, length);
-
-  textArray.splice(randomIndex(textArray), 0, link(words.join(" ")));
+  const { before, after } = noiseWords(words, length);
+  const textArray = [...before, link(words.join(" ")), ...after];
   const innerHtml = textArray.join(" ");
   const paragraph = document.createElement("p");
   paragraph.classList.add("search");

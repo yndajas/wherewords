@@ -21,7 +21,7 @@ function endsWith(array, sequence) {
   return sequence.every((word, index) => word === end[index]);
 }
 
-export function randomIndex(array, random = Math.random) {
+function randomIndex(array, random = Math.random) {
   return Math.floor(random() * array.length);
 }
 
@@ -41,5 +41,7 @@ export function noiseWords(words, length, random = Math.random) {
     noise.push(candidates[randomIndex(candidates, random)]);
   }
 
-  return noise;
+  const splitAt = randomIndex(noise, random);
+
+  return { before: noise.slice(0, splitAt), after: noise.slice(splitAt) };
 }

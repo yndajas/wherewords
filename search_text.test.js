@@ -81,16 +81,24 @@ describe("candidateWords", () => {
 
 describe("noiseWords", () => {
   it("returns enough words to reach the requested length once the phrase is inserted", () => {
-    assert.equal(noiseWords(words, 40, walkThroughPhrase()).length, 37);
+    const { before, after } = noiseWords(words, 40, walkThroughPhrase());
+
+    assert.equal(before.length + after.length, 37);
   });
 
   it("never contains the phrase", () => {
     const noise = noiseWords(words, 6, walkThroughPhrase());
 
-    assert.deepEqual(noise, ["interact", "with", "with"]);
+    assert.deepEqual(noise, {
+      before: [],
+      after: ["interact", "with", "with"],
+    });
   });
 
   it("adds no words when none can safely follow", () => {
-    assert.deepEqual(noiseWords(["interact"], 20, walkThroughPhrase()), []);
+    assert.deepEqual(noiseWords(["interact"], 20, walkThroughPhrase()), {
+      before: [],
+      after: [],
+    });
   });
 });
