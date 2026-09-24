@@ -54,6 +54,10 @@ describe("candidateWords", () => {
   it("allows every word otherwise", () => {
     assert.deepEqual(candidateWords(words, ["interact", "me"]), words);
   });
+
+  it("allows no word at all when the phrase is a single word", () => {
+    assert.deepEqual(candidateWords(["interact"], ["interact"]), []);
+  });
 });
 
 describe("noiseWords", () => {
@@ -65,5 +69,9 @@ describe("noiseWords", () => {
     const noise = noiseWords(words, 6, walkThroughPhrase());
 
     assert.deepEqual(noise, ["interact", "with", "with"]);
+  });
+
+  it("adds no words when none can safely follow", () => {
+    assert.deepEqual(noiseWords(["interact"], 20, walkThroughPhrase()), []);
   });
 });

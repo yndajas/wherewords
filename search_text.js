@@ -27,6 +27,7 @@ export function noiseWords(words, length, random = Math.random) {
 
   while (textArray.length < length - words.length) {
     const candidates = candidateWords(words, textArray);
+    if (candidates.length === 0) break;
 
     textArray.push(candidates[randomIndex(candidates, random)]);
   }
