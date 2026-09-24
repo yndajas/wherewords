@@ -32,14 +32,14 @@ export function candidateWords(words, noise) {
 }
 
 export function noiseWords(words, length, random = Math.random) {
-  const textArray = [];
+  const noise = [];
 
-  while (textArray.length < length - words.length) {
-    const candidates = candidateWords(words, textArray);
+  while (noise.length < length - words.length) {
+    const candidates = candidateWords(words, noise);
     if (candidates.length === 0) break;
 
-    textArray.push(candidates[randomIndex(candidates, random)]);
+    noise.push(candidates[randomIndex(candidates, random)]);
   }
 
-  return textArray;
+  return noise;
 }
