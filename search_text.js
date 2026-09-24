@@ -21,7 +21,7 @@ function endsWith(array, sequence) {
   return sequence.every((word, index) => word === end[index]);
 }
 
-function randomIndex(array, random = Math.random) {
+function randomIndex(array, random) {
   return Math.floor(random() * array.length);
 }
 
