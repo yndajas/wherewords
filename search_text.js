@@ -9,7 +9,7 @@ export function hasUniqueWords(words) {
 function endsWith(array, sequence) {
   const end = array.slice(-sequence.length);
 
-  return sequence.every((word, index) => word == end[index]);
+  return sequence.every((word, index) => word === end[index]);
 }
 
 export function randomIndex(array, random = Math.random) {
