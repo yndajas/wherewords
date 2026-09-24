@@ -9,11 +9,10 @@ function link(phrase) {
   return `<a href="./well_doner">${phrase}</a>`;
 }
 
-function textParagraph(phrase, length) {
-  const words = splitWords(phrase);
+function textParagraph(words, length) {
   const textArray = noiseWords(words, length);
 
-  textArray.splice(randomIndex(textArray), 0, link(phrase));
+  textArray.splice(randomIndex(textArray), 0, link(words.join(" ")));
   const innerHtml = textArray.join(" ");
   const paragraph = document.createElement("p");
   paragraph.classList.add("search");
@@ -42,5 +41,5 @@ document.querySelector("form").addEventListener("submit", (event) => {
     words.length,
   );
 
-  event.target.replaceWith(textParagraph(phrase, length));
+  event.target.replaceWith(textParagraph(words, length));
 });
