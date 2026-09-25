@@ -10,16 +10,16 @@
     <form>
       <label>
         Enter a phrase with no repeating words
-        <input type="text" name="phrase">
+        <input type="text" name="phrase" required>
       </label>
 
       <label>
         Enter a number
-        <input type="number" name="length">
+        <input type="number" name="length" min="1" required>
       </label>
 
       <input type="submit">
     </form>
-    <script src="./well_done.js"></script>
+    <script type="module" src="./well_done.js"></script>
   </body>
 </html>
